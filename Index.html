@@ -6,9 +6,51 @@
       <title>YuukiSystems</title>
       <link href="style.css" rel="stylesheet" type="text/css" />
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
-      <link rel="icon" href="https://cdn.discordapp.com/attachments/893820447001563207/1207739002220716042/f6ac516a8921bd53cbe98cd72230a740.webp?ex=65e0bd98&is=65ce4898&hm=901afb26d9426beb8d50b65aac9b9f861b11dcb79f80e7f21ef55dec44988ec5&">
+      <link rel="icon" href="">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script src="script.js"></script>
+
+
+	  <style>
+		.button {
+		  border: none;
+		  color: rgb(0, 0, 0);
+		  padding: 16px 32px;
+		  text-align: center;
+		  text-decoration: none;
+		  display: inline-block;
+		  font-size: 16px;
+		  margin: 4px 2px;
+		  transition-duration: 0.4s;
+		  cursor: pointer;
+		}
+		
+		.button1 {
+		  background-color: #ff0000;
+		  color: #0b0c0f;
+		  border: 2px solid #04AA6D;
+		}
+		
+		.button1:hover {
+		  background-color: #04AA6D;
+		  color: #0b0c0f;
+		}
+		
+		.button2 {
+		  background-color: #00a9e2;
+		  color: #0b0c0f;
+		  border: 2px solid #00a9e2;
+		}
+		
+		.button2:hover {
+		  background-color: #0b0c0f;
+		  color: #0b0c0f;
+		}
+		
+		</style>
+
+
+
   </head>
     <body>
 	  
@@ -16,12 +58,12 @@
 	  
 		<!--────────────────Header───────────────-->
 	<header>
-		<a class="logo" href="https://yuukisystems.github.io/Index.html">
-		<button>Reload The Website</button>
+		<a class="logo" href="">
 		</a>
 		<nav>	
 		 <ul class="nav-bar"><div class="bg"></div>
-			<li><a class="nav-link active" href="#home">Home</a></li>
+			<li><a class="nav-link" href="">Reload The Website</a></li>
+			<li><a class="nav-link" href="#home">Home</a></li>
 			<li><a class="nav-link" href="#projects">Projects</a></li>
 			<li><a class="nav-link" href="#AboutMe">About Me</a></li>
 			<li><a class="nav-link" href="#contact">Contact</a></li>
@@ -62,10 +104,11 @@
 		  <div class="work-box">
 		  <div class="work">	
 		<!--───────────────card───────────────-->
-			<div class="card">
-			    <a href="https://discord.com/api/oauth2/authorize?client_id=690889836755812393&permissions=8&scope=bot"> <!--Link to project-->
-				<center><div class="work-content">The YuukiSystems Bot (Click Me!)</div></a></center>
-				</div>
+		<div><button class ="button button2">
+		<a href="https://discord.com/api/oauth2/authorize?client_id=690889836755812393&permissions=8&scope=bot" target="_blank">The YuukiSystems Bot (Click To Invite Me)
+		</a></button> <!--Link to project-->
+		<div class="work-box">
+		<div class="work"></div>
 
 	<!--───────────────About Me───────────────-->
 	  <div id="AboutMe"> 
@@ -81,8 +124,8 @@
 		  <!--────social media links─────-->
 		   <h3>Contact<hr></h3>
 		   <p>Feel free to contact me on my social media.</p>
-		   <p>My Discord Username:</p>
-		   <button><a href="discord://discordapp.com/users/188555238158893056" target="_blank">YuukiSystems</a></button>
+		   <p>My Discord Username. (Click To Message Me)</p>
+		   <button class ="button button2"><a href="discord://discordapp.com/users/188555238158893056" target="_blank">YuukiSystems</a></button>
 		    <div class="social-media">
 				<a href="https://discord.gg/AwAQd8SbVW" target="_blank"><i class='fab fa-discord'></i></a>
 				<a href="https://github.com/YuukiSystems/" target="_blank"><i class='fab fa-github'></i></a>
@@ -90,7 +133,7 @@
 		    </div>
 		  </div>
 	</main>
-	  <footer class="copyright">© 2025 
+	  <footer class="copyright">© 2024 
 		  <a href="/Secret.html" target="_blank">YuukiSystems</a>
      </footer>
 	  

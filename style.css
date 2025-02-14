@@ -527,3 +527,7 @@ hr {
 .Black{
   background: #000000;
 }
+
+a{
+	text-decoration: none;
+}
