@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<center><!DOCTYPE html>
 <html lang="de">
 <head>
   <!-- Meta-Informationen -->
@@ -8,28 +8,29 @@
 
   <!-- Schriftart und Icon Links -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+  <!-- updated to point to style.css -->
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="https://i.imgur.com/e7mC9HK.png">
 
   <!-- Inline Style für Button -->
   <style>
     body {
-      background: #191f21;
+      background: var(--bg);
       font-family: 'Fira Mono', monospace;
-      color: #39FF14;
+      color: var(--text);
       padding: 20px;
     }
     /* Individueller Button-Stil passend zum Terminal-Design */
     .button-custom {
-      background-color: #010b00;
-      border: 2px solid #39FF14;
-      color: #39FF14;
+      background-color: var(--terminal-bg);
+      border: 2px solid var(--text);
+      color: var(--text);
       padding: 10px 25px;
       font-family: 'Fira Mono', monospace;
       font-size: 1.1rem;
       cursor: pointer;
       border-radius: 6px;
-      box-shadow: 0 0 10px #39FF14aa;
+      box-shadow: 0 0 10px var(--glow);
       transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
       text-align: center;
       display: inline-block;
@@ -39,10 +40,15 @@
     }
     .button-custom:hover {
       background-color: #000000;
-      color: #010b00;
-      box-shadow: 0 0 20px #39FF14ff;
+      color: var(--terminal-bg);
+      box-shadow: 0 0 20px var(--text);
     }
   </style>
+  <script>
+    // Prevent FOUC by hinting the browser to prefetch the CSS
+    const l = document.createElement('link'); l.rel = 'preload'; l.as = 'style'; l.href = 'style.css'; document.head.appendChild(l);
+  </script>
+  
 </head>
 <body>
 
@@ -54,11 +60,11 @@
   <!-- Navigation Bar -->
   <nav class="navbar">
     <ul>
-      <li><a href="">Reload The Website</a></li>
-      <li><a href="#socials">Socials</a></li>
-      <li><a href="#about">About Me</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact Me</a></li>
+      <a href="">Reload The Website</a>
+      <a href="#socials">Socials</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
     </ul>
   </nav>
 
@@ -85,45 +91,45 @@
     <section id="socials" class="terminal-box">
       <h2><span class="prompt">[ My Socials ]</span></h2>
       <ul>
-        <li>
+        
           <a href="https://discord.gg/FtkBAFt4ax" target="_blank" rel="noopener noreferrer" class="button-custom">
             <i class='fab fa-discord'></i> My Discord
           </a>
-        </li>
-        <li>
+        
+        
           <a href="https://twitch.tv/YuukiSystems" target="_blank" rel="noopener noreferrer" class="button-custom">
             <i class='fab fa-twitch'></i> My Twitch
           </a>
-        </li>
-        <li>
+        
+        
           <a href="https://github.com/YuukiSystems" target="_blank" rel="noopener noreferrer" class="button-custom">
             <i class='fab fa-github'></i> My GitHub
           </a>
-        </li>
+        
 
     <!-- Vyrox Social Media Bereich mit Buttons -->
 
         <h2><span class="prompt">[ Vyrox eSports Socials ]</span></h2>
-        <li>
+        
           <a href="https://discord.gg/FtkBAFt4ax" target="_blank" rel="noopener noreferrer" class="button-custom">
             <i class='fab fa-discord'></i> Vyrox Discord
           </a>
-        </li>
-        <li>
+        
+        
           <a href="https://twitch.tv/vyroxesports" target="_blank" rel="noopener noreferrer" class="button-custom">
             <i class='fab fa-twitch'></i> Vyrox Twitch
           </a>
-        </li>
-        <li>
+        
+        
           <a href="https://www.instagram.com/vyroxesports/" target="_blank" rel="noopener noreferrer" class="button-custom">
             <i class='fab fa-instagram'></i> Vyrox Instagram
           </a>
-        </li>
-        <li>
+        
+        
           <a href="https://www.twitter.com/vyroxesports" target="_blank" rel="noopener noreferrer" class="button-custom">
             <i class='fab fa-twitter'></i> Vyrox Twitter
           </a>
-        </li>
+        
       </ul>
     </section>
 
@@ -131,7 +137,7 @@
     <section id="about" class="terminal-box">
       <h2><span class="prompt">[ About Me ]</span></h2>
       <p>
-          Owner &amp; Administrator at Vyrox eSports.
+          Owner &amp; Administrator at Vyrox eSports.<br>
           Passionate gamer, Linux fan, and Valorant enthusiast.
       </p>
     </section>
@@ -140,8 +146,8 @@
     <section id="projects" class="terminal-box">
       <h2><span class="prompt">[ Projects ]</span></h2>
       <ul>
-        <li>Vyrox eSports Discord Management</li>
-        <li>Vyrox eSports Technical Support</li>
+        Vyrox eSports Discord Management<br>
+        Vyrox eSports Technical Support
       </ul>
     </section>
 
@@ -149,25 +155,28 @@
     <section id="contact" class="terminal-box">
       <h2><span class="prompt">[ Contact Me ]</span></h2>
       <ul>
-        <li>
+        
           <a href="discord://discordapp.com/users/188555238158893056" target="_blank" rel="noopener noreferrer" class="button-custom">
             <i class='fab fa-discord'></i> Click here PM me Directly
           </a>
-        </li>
+        
       </ul>
     </section>
   </main>
 
-  <!-- Footer mit Copyright -->
+  <!-- Footer -->
   <footer class="copyright">
     © 2025 <a href="discord://discordapp.com/users/188555238158893056" target="">YuukiSystems</a>
+    <center><div>
+<nav>
+    <button class="button-custom"><a href="#about">About</a></button>
+    <button class="button-custom"><a href="#projects">Projects</a></button>
+    <button class="button-custom"><a href="#socials">Socials</a></button>
+    <button class="button-custom"><a href="#contact">Contact</a></button>
+    <button class="button-custom"><a href="">Reload</a></button>
+</nav>
+    </div></center>
   </footer>
-
-
-
-
-
-
 
   <!-- JavaScript für Terminal und Commands -->
   <script>
@@ -218,12 +227,12 @@ input.addEventListener("keydown", (e) => {
 
     appendOutput("> " + fullInput);
 
-    switch (cmd) {
+    switch (cmd.toLowerCase()) {
       case "help":
         appendOutput("Available commands:");
         appendOutput("My Socials: about | socials | projects | contact");
         appendOutput("Vyrox Socials: vyrox-twitch | vyrox-instagram | vyrox-twitter | vyrox-x | vyrox-discord");
-        appendOutput("Commands: github | discord | ping | clear | date | uptime | echo | ls | whoami | hostname | pwd | uname | df | free | top | cls | cd | cat | mkdir | rmdir | reload | 9ine | drakey | coach | cookie | lottie | help");
+        appendOutput("Commands: github | discord | ping | clear | date | uptime | echo | ls | whoami | hostname | pwd | uname | df | free | top | cls | cd | cat | mkdir | rmdir | reload | 9ine | drakey | coach | cookie | lottie | jayrelaxo | help");
         break;
 
       case "reload":
@@ -290,6 +299,10 @@ input.addEventListener("keydown", (e) => {
 
       case "lottie":
         appendOutput("Lottie is awesome! ❤️");
+        break;
+
+      case "jayrelaxo":
+        appendOutput("Hat keine ahnung von computern.");
         break;
 
       case "pwd":
@@ -477,4 +490,4 @@ input.addEventListener("keydown", (e) => {
 
   </script>
 </body>
-</html>
+</html></center>

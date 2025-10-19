@@ -1,11 +1,29 @@
 /* Import der Schriftart Fira Mono */
 @import url('https://fonts.googleapis.com/css?family=Fira+Mono:400,700&display=swap');
 
+/* Global color variables */
+:root {
+  --bg: #191f21;
+  --text: #39FF14;
+  --accent: #07ff7f;
+  --accent-strong: #07ff7f;
+  --nav-bg: #111b1c;
+  --nav-border: #07ff7f;
+  --scanline-light: rgba(39,255,50,0.05);
+  --scanline: rgba(39,255,50,0.08);
+  --terminal-bg: #010b00;
+  --terminal-bg-dim: rgba(10,15,12,0.93);
+  --prompt: #07ff7f;
+  --shadow: #13ff7c55;
+  --glow: #39FF14aa;
+  --focus-bg: #013500;
+}
+
 /* Grundlegende Body-Styles */
 body {
-  background: #191f21; /* dunkler Hintergrund */
+  background: var(--bg); /* dunkler Hintergrund */
   font-family: 'Fira Mono', 'Consolas', monospace; /* Monospace Fonts für Terminallook */
-  color: #39FF14; /* typisches grün */
+  color: var(--text); /* typisches grün */
   margin: 0;
   min-height: 100vh;
   position: relative;
@@ -27,8 +45,8 @@ body {
   pointer-events: none; /* keine Interaktion mit Maus */
   background: repeating-linear-gradient(
     to bottom,
-    rgba(39,255,50,0.05) 0px,
-    rgba(39,255,50,0.08) 1px,
+    var(--scanline-light) 0px,
+    var(--scanline) 1px,
     transparent 2px,
     transparent 8px
   );
@@ -43,9 +61,10 @@ body {
 
 /* Navigation Bar Styling */
 .navbar {
-  background: #111b1c;
-  border-bottom: 1px solid #07ff7f;
-  box-shadow: 0 0 10px #13ff7c70;
+  background: var(--nav-bg);
+  border-radius: 9px;
+  border-bottom: 1px solid var(--nav-border);
+  box-shadow: 0 0 10px var(--shadow);
   display: flex;
   align-items: center;
   padding: 0 2rem;
@@ -53,8 +72,8 @@ body {
   position: sticky; /* bleibt oben sichtbar */
   top: 0;
   z-index: 99;
-  position: relative;
 }
+
 
 /* Hamburgerbutton für kleine Bildschirme - initial versteckt */
 .navbar-toggle {
@@ -62,7 +81,7 @@ body {
   background: none;
   border: none;
   font-size: 2rem;
-  color: #39FF14;
+  color: var(--text);
   cursor: pointer;
   margin-left: auto;
 }
@@ -114,9 +133,6 @@ body {
   display: block;
 }
 
-
-
-
 /* Grundstruktur der Nav-Liste */
 .navbar ul {
   display: flex;
@@ -128,27 +144,27 @@ body {
 
 /* Nav-Link Styling */
 .navbar a {
-  color: #39ffb8;
+  color: var(--accent-strong);
   text-decoration: none;
   font-weight: 700;
-  text-shadow: 0 0 8px #07ff7f;
+  text-shadow: 0 0 8px var(--accent);
   transition: color 0.15s;
 }
 
 /* Hover-Effekt für Links */
 .navbar a:hover {
-  color: #39FF14;
+  color: var(--text);
 }
 
 /* Überschrift unter Navbar */
 .subheading {
-  color: #39FF14;
+  color: var(--text);
   font-family: 'Fira Mono', monospace;
   font-weight: 700;
   font-size: 2.2rem;
   text-align: center;
   margin: 1rem 0 3rem 0;
-  text-shadow: 0 0 10px #07ff7f;
+  text-shadow: 0 0 10px var(--accent);
 }
 
 /* Zentrierung und max Breite für Hauptinhalt */
@@ -170,30 +186,29 @@ main {
 
 /* Terminal Box Styling */
 .terminal-box {
-  background: rgba(10,15,12,0.93);
+  background: var(--terminal-bg-dim);
   border-radius: 9px;
-  box-shadow: 0 0 20px #13ff7c55;
-  border: 1px solid #39FF14;
+  box-shadow: 0 0 20px var(--shadow);
+  border: 1px solid var(--text);
   padding: 2rem;
   margin-bottom: 2.5rem;
   position: relative;
   overflow: hidden;
   font-size: 1.03rem;
-  resize: both; /* vergrößerbar und verkleinerbar */
 }
 
 /* Auffällige grüne Prompts */
 .prompt {
-  color: #07ff7f;
+  color: var(--prompt);
   font-family: inherit;
   font-weight: bold;
   letter-spacing: 0.05em;
-  text-shadow: 0 0 7px #39FF14;
+  text-shadow: 0 0 7px var(--text);
 }
 
 /* Text für Kommandos */
 .command {
-  color: #39FF14;
+  color: var(--text);
   font-family: inherit;
 }
 
@@ -204,14 +219,14 @@ main {
 
 /* Link-Styling in Terminal-Box */
 .terminal-box a {
-  color: #39FF14;
-  text-decoration: #07ff7f;
-  text-shadow: 0 0 7px #39FF14;
+  color: var(--text);
+  text-decoration-color: var(--accent);
+  text-shadow: 0 0 7px var(--text);
 }
 
 /* Hover Effekt für Links in Terminal */
 .terminal-box a:hover {
-  color: #07ff7f;
+  color: var(--accent);
 }
 
 /* Terminal Output Box - veränderbare Größe */
@@ -219,41 +234,41 @@ main {
   height: 8rem;
   min-height: 4rem;
   max-height: 25rem;
-  resize: both;
-  background: #010b00;
-  border: 1px solid #07ff7f;
+  resize: vertical; /* vertikal veränderbar */
+  background: var(--terminal-bg);
+  border: 1px solid var(--accent);
   padding: 0.5rem;
   margin-bottom: 0.8rem;
   font-family: monospace;
   font-size: 1.1rem;
   overflow-y: auto;
-  color: #39ff14;
+  color: var(--text);
   white-space: pre-wrap;
 }
 
 /* Terminal Input Feld Styling */
 #terminal-input {
   width: 96.5%;
-  background: #010b00;
-  border: 1px solid #07ff7f;
-  color: #39ff14;
+  background: var(--terminal-bg);
+  border: 1px solid var(--accent);
+  color: var(--text);
   font-family: monospace;
   font-size: 1.2rem;
   padding: 0.6rem;
   border-radius: 4px;
   outline: none;
-  box-shadow: 0 0 10px #07ff7f66;
+  box-shadow: 0 0 10px var(--glow);
   transition: background-color 0.3s;
 }
 
 /* Input Feld bei Fokus */
 #terminal-input:focus {
-  background: #013500;
+  background: var(--focus-bg);
 }
 
 /* Copyright Bereich - nur Beispiel */
 .copyright {
-  color: #39FF14;
+  color: var(--text);
   font-size: 1.2rem;
   line-height: 40px;
   text-align: center;
@@ -261,7 +276,7 @@ main {
 
 /* Copyright Links */
 .copyright a {
-  color: #39FF14;
+  color: var(--text);
   font-size: 1rem;
   letter-spacing: 1px;
   text-decoration: none;
@@ -269,5 +284,5 @@ main {
 
 /* Links Hover-Farbe ändern */
 .copyright a:hover {
-  color: var(--main-decor-color);
+  color: var(--accent);
 }
