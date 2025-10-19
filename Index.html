@@ -166,21 +166,22 @@
 
   <!-- Footer -->
   <footer class="copyright">
-    © 2025 <a href="discord://discordapp.com/users/188555238158893056" target="">YuukiSystems</a>
     <center><div>
 <nav>
-    <button class="button-custom"><a href="#about">About</a></button>
-    <button class="button-custom"><a href="#projects">Projects</a></button>
-    <button class="button-custom"><a href="#socials">Socials</a></button>
-    <button class="button-custom"><a href="#contact">Contact</a></button>
-    <button class="button-custom"><a href="">Reload</a></button>
+      <button class="button-custom"><a href="#socials">Socials</a></button>
+      <button class="button-custom"><a href="#about">About</a></button>
+      <button class="button-custom"><a href="#projects">Projects</a></button>
+      <button class="button-custom"><a href="#contact">Contact</a></button>
+      <button class="button-custom"><a href="">Reload</a></button>
 </nav>
     </div></center>
+     © <span id="current-year"></span> <a href="discord://discordapp.com/users/188555238158893056" target="">YuukiSystems</a>
   </footer>
 
   <!-- JavaScript für Terminal und Commands -->
   <script>
-
+    // Copyright Year Auto-Update
+    document.getElementById("current-year").textContent = new Date().getFullYear();
 
 const input = document.getElementById("terminal-input");
 const output = document.getElementById("terminal-output");
@@ -490,4 +491,4 @@ input.addEventListener("keydown", (e) => {
 
   </script>
 </body>
-</html></center>
+</html></center>s
