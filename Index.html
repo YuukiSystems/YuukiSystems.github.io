@@ -12,14 +12,80 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="https://i.imgur.com/e7mC9HK.png">
 
-  <!-- Inline Style für Button -->
+  <!-- Inline Style für Button + Responsive Rules -->
   <style>
+    /* Mobile-first base */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; }
     body {
       background: var(--bg);
       font-family: 'Fira Mono', monospace;
       color: var(--text);
       padding: 20px;
+      margin: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.4;
     }
+
+    /* Navbar: flexible and wrap on small screens */
+    .navbar {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+    .navbar ul {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .navbar a {
+      display: inline-block;
+      padding: 8px 12px;
+      color: var(--text);
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background-color .18s, color .18s;
+    }
+    .navbar a:hover { background: rgba(255,255,255,0.04); }
+
+    /* Collapsible nav toggle (mobile) */
+    .nav-toggle {
+      display: none;
+      background: transparent;
+      border: none;
+      padding: 8px;
+      margin: 0;
+      cursor: pointer;
+    }
+    .nav-toggle:focus { outline: 2px solid rgba(255,255,255,0.12); }
+    .hamburger {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      position: relative;
+    }
+    .hamburger::before, .hamburger::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      transition: transform .18s ease, opacity .18s ease;
+    }
+    .hamburger::before { top: -7px; }
+    .hamburger::after { top: 7px; }
+
+    .nav-menu { display: flex; gap: 8px; align-items: center; }
+    .nav-link { color: var(--text); text-decoration: none; padding: 8px 12px; border-radius:6px; }
+
+
     /* Individueller Button-Stil passend zum Terminal-Design */
     .button-custom {
       background-color: var(--terminal-bg);
@@ -43,10 +109,94 @@
       color: var(--terminal-bg);
       box-shadow: 0 0 20px var(--text);
     }
+
+    /* Terminal UI tweaks */
+    .terminal-box {
+      background: rgba(0,0,0,0.35);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+    #terminal-output { max-height: 40vh; overflow:auto; padding-bottom:8px; }
+    #terminal-output p { margin: 0 0 6px 0; word-break: break-word; }
+    #terminal-input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.5);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    /* Footer nav buttons: make links inside buttons full-width on small screens */
+    footer nav { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; }
+    footer nav a { color:inherit; text-decoration:none; }
+
+    /* Responsive breakpoints */
+    @media (max-width: 800px) {
+      body { padding: 14px; }
+      h1.subheading { font-size: 1.6rem; }
+      .button-custom { font-size: 1rem; padding: 10px 16px; }
+      .navbar a { padding: 8px 10px; }
+    }
+
+    @media (max-width: 600px) {
+      /* Stack nav/link buttons and make action buttons full width for easier tapping */
+      .navbar ul { gap: 6px; }
+      /* Hide top navbar (including hamburger) on small screens */
+      .navbar { display: none !important; }
+      .button-custom { display: block; width: 100%; padding: 12px 14px; font-size: 1rem; }
+      .terminal-box { padding: 12px; }
+      #terminal-output { max-height: 35vh; }
+      h1.subheading { font-size: 1.4rem; text-align: center; }
+      .background { display: none; } /* optional: hide heavy background on mobile to save rendering */
+    }
+
   </style>
   <script>
     // Prevent FOUC by hinting the browser to prefetch the CSS
     const l = document.createElement('link'); l.rel = 'preload'; l.as = 'style'; l.href = 'style.css'; document.head.appendChild(l);
+  </script>
+  <script>
+    // Navbar toggle behavior for small screens — run after DOM is ready
+    document.addEventListener('DOMContentLoaded', function () {
+      const navToggle = document.getElementById('nav-toggle');
+      const navMenu = document.getElementById('nav-menu');
+      if (!navToggle || !navMenu) return;
+
+      function setOpen(open) {
+        navMenu.classList.toggle('open', open);
+        navToggle.setAttribute('aria-expanded', String(!!open));
+        navToggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+      }
+
+      navToggle.addEventListener('click', () => setOpen(!navMenu.classList.contains('open')));
+
+      // Close when a nav link is clicked (for single-page navigation)
+      navMenu.addEventListener('click', (e) => {
+        if (e.target.classList && e.target.classList.contains('nav-link')) {
+          setOpen(false);
+        }
+      });
+
+      // Close on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') setOpen(false);
+      });
+
+      // Close when clicking outside the nav-menu on small screens
+      document.addEventListener('click', (e) => {
+        if (!navMenu.classList.contains('open')) return;
+        const path = e.composedPath ? e.composedPath() : (e.path || []);
+        if (!path.includes(navMenu) && !path.includes(navToggle)) {
+          setOpen(false);
+        }
+      });
+    });
   </script>
   
 </head>
@@ -57,16 +207,19 @@
     <div class="scanlines"></div>
   </div>
 
-  <!-- Navigation Bar -->
-  <nav class="navbar">
-    <ul>
-      <a href="">Reload The Website</a>
-      <a href="#socials">Socials</a>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </ul>
-  </nav>
+  <!-- Navigation Bar (collapsible on small screens) -->
+  <!--<nav class="navbar" aria-label="Main navigation">
+    <button id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open navigation">
+      <span class="hamburger"></span>
+    </button>
+    <div id="nav-menu" class="nav-menu">
+      <a href="" class="nav-link">Reload The Website</a>
+      <a href="#socials" class="nav-link">Socials</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </div>
+  </nav> -->
 
   <!-- Hauptüberschrift -->
   <h1 class="subheading">YuukiSystems</h1>
@@ -175,8 +328,8 @@
       <button class="button-custom"><a href="">Reload</a></button>
 </nav>
     </div></center>
+         © <span id="current-year"></span> <a href="discord://discordapp.com/users/188555238158893056" target="">YuukiSystems</a>
   </footer>
-     © <span id="current-year"></span> <a href="discord://discordapp.com/users/188555238158893056" target="">YuukiSystems</a>
   <!-- JavaScript für Terminal und Commands -->
   <script>
     // Copyright Year Auto-Update
@@ -232,7 +385,7 @@ input.addEventListener("keydown", (e) => {
         appendOutput("Available commands:");
         appendOutput("My Socials: about | socials | projects | contact");
         appendOutput("Vyrox Socials: vyrox-twitch | vyrox-instagram | vyrox-twitter | vyrox-x | vyrox-discord");
-        appendOutput("Commands: github | discord | ping | clear | date | uptime | echo | ls | whoami | hostname | pwd | uname | df | free | top | cls | cd | cat | mkdir | rmdir | reload | 9ine | drakey | coach | cookie | lottie | jayrelaxo | help");
+        appendOutput("Commands: github | discord | ping | clear | date | uptime | echo | ls | whoami | hostname | pwd | uname | df | free | top | cls | cd | cat | mkdir | rmdir | reload | 9ine | drakey | coach | cookie | lottie | jayrelaxo | Lumiray | help");
         break;
 
       case "reload":
@@ -302,7 +455,11 @@ input.addEventListener("keydown", (e) => {
         break;
 
       case "jayrelaxo":
-        appendOutput("Hat keine ahnung von computern.");
+        appendOutput("Hat keine ahnung von computern 🤔");
+        break;
+
+      case "lumiray":
+        appendOutput("Die Wassermelonen Königin 🍉");
         break;
 
       case "pwd":

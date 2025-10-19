@@ -4,10 +4,10 @@
 /* Global color variables */
 :root {
   --bg: #191f21;
-  --text: #39FF14;
+  --text: #07ff7f;
   --accent: #07ff7f;
   --accent-strong: #07ff7f;
-  --nav-bg: #111b1c;
+  --nav-bg: #0b100d;
   --nav-border: #07ff7f;
   --scanline-light: rgba(39,255,50,0.05);
   --scanline: rgba(39,255,50,0.08);
@@ -63,13 +63,13 @@ body {
 .navbar {
   background: var(--nav-bg);
   border-radius: 9px;
-  border-bottom: 1px solid var(--nav-border);
+  border: 1px solid var(--nav-border);
   box-shadow: 0 0 10px var(--shadow);
   display: flex;
   align-items: center;
   padding: 0 2rem;
   height: 68px;
-  position: sticky; /* bleibt oben sichtbar */
+  position: static; /* hier ändern für sticky oder static*/
   top: 0;
   z-index: 99;
 }
@@ -170,7 +170,7 @@ body {
 /* Zentrierung und max Breite für Hauptinhalt */
 main {
   margin: 0 auto 4rem auto;
-  max-width: 640px;
+  max-width: 1000px;
 }
 
 /* Draggable Handle Styling */
@@ -195,6 +195,7 @@ main {
   position: relative;
   overflow: hidden;
   font-size: 1.03rem;
+  
 }
 
 /* Auffällige grüne Prompts */
@@ -231,7 +232,7 @@ main {
 
 /* Terminal Output Box - veränderbare Größe */
 #terminal-output {
-  height: 8rem;
+  height: 30rem;
   min-height: 4rem;
   max-height: 25rem;
   resize: vertical; /* vertikal veränderbar */
